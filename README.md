@@ -1,0 +1,2 @@
+# pjatkPPRG
+Podstawy programowania - ćwiczenia
