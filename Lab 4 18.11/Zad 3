@@ -31,7 +31,7 @@ int main()
 	cin >> r;
 	cout << "Podaj liczbe elementow ciagu:" << endl;
 	cin >> n;
-	cout << suma_ciagu_a(a, r, n);
+	cout << suma_ciagu_a(a, r, n) << endl;
 
 	cout << "Podaj pierwszy wyraz ciagu:" << endl;
 	cin >> b;
