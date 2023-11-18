@@ -1,0 +1,47 @@
+#include <iostream>
+using namespace std;
+
+float suma_ciagu_a(float a, float r, int n)
+{
+	float suma = 0;
+	for (int i = 0; i < n; i++) {
+		suma = suma + a;
+		a = a + r;
+	}
+	return suma;
+}
+
+float suma_ciagu_g(float b, float d, int x)
+{
+	float suma = 0;
+	for (int i = 0; i < x; i++) {
+		suma = suma + b;
+		b = b * d;
+	}
+	return suma;
+}
+
+int main()
+{
+	float a, r, b, d;
+	int n, x;
+	cout << "Podaj pierwszy wyraz ciagu:" << endl;
+	cin >> a;
+	cout << "Podaj roznice ciagu:" << endl;
+	cin >> r;
+	cout << "Podaj liczbe elementow ciagu:" << endl;
+	cin >> n;
+	cout << suma_ciagu_a(a, r, n);
+
+	cout << "Podaj pierwszy wyraz ciagu:" << endl;
+	cin >> b;
+	cout << "Podaj iloraz ciagu:" << endl;
+	cin >> d;
+	cout << "Podaj liczbe elementow ciagu:" << endl;
+	cin >> x;
+	cout << suma_ciagu_g(b, d, x);
+
+	return 0;
+
+
+}
