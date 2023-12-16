@@ -1,1 +1,51 @@
-?
+#include <iostream>
+
+void swap(int& a, int& b) {
+    int temp = a;
+    a = b;
+    b = temp;
+}
+
+int podzial(int tab[], int low, int high) {
+    int pivot = tab[high];  
+    int i = (low - 1);  
+
+    for (int j = low; j <= high - 1; j++) {
+        if (tab[j] <= pivot) {
+            i++;
+            swap(tab[i], tab[j]);
+        }
+    }
+    swap(tab[i + 1], tab[high]);
+    return (i + 1);
+}
+
+void quickSort(int tab[], int low, int high) {
+    if (low < high) {
+        int p = podzial(tab, low, high);
+
+        quickSort(tab, low, p - 1);
+        quickSort(tab, p + 1, high);
+    }
+}
+
+void wyswietlTab(int tab[], int size) {
+    for (int i = 0; i < size; i++)
+        std::cout << tab[i] << " ";
+    std::cout << std::endl;
+}
+
+int main() {
+    int tab[] = { 12, 7, 11, 5, 2, 9, 1 };
+    int n = sizeof(tab) / sizeof(tab[0]);
+
+    std::cout << "Tablica przed posortowaniem: \n";
+    wyswietlTab(tab, n);
+
+    quickSort(tab, 0, n - 1);
+
+    std::cout << "Tablica po posortowaniu: \n";
+    wyswietlTab(tab, n);
+
+    return 0;
+}
