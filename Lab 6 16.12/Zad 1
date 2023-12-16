@@ -1,0 +1,26 @@
+#include <iostream>
+using namespace std;
+
+struct Punkt {
+	int x;
+	int y;
+};
+
+int obliczOdleglosc(const Punkt& punkt1, const Punkt& punkt2)
+{
+	int roznicaX = punkt2.x - punkt1.x;
+	int roznicaY = punkt2.y - punkt1.y;
+
+	//wzor na odleglosc punktow
+	return sqrt(roznicaX * roznicaX + roznicaY * roznicaY);
+}
+
+int main()
+{
+	Punkt punktA = { 2 , 5 };
+	Punkt punktB = { 7, 23 };
+	int odleglosc = obliczOdleglosc(punktA, punktB);
+	cout << "Odleglosc miedzy punktem A(" << punktA.x << ", " << punktA.y << ") "
+		<< "a punktem B(" << punktB.x << ", " << punktB.y << ") wynosi: " << odleglosc << std::endl;
+
+}
