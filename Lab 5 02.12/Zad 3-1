@@ -1,0 +1,59 @@
+#include <iostream>
+#include <cmath>
+
+const double PI = 3.14159265358979323846;
+
+double obliczPoleK(double bok) {
+    return bok * bok;
+}
+
+double obliczPoleP(double bokA, double bokB) {
+    return bokA * bokB;
+}
+
+double obliczPoleO(double promien) {
+    return PI * promien * promien;
+}
+
+double obliczPoleT(double podstawa, double wysokosc) {
+    return 0.5 * podstawa * wysokosc;
+}
+
+int main() {
+    char ksztalt;
+    std::cout << "Wybierz figure (k - kwadrat, p - prostokat, o - kolo, t - trojkat): ";
+    std::cin >> ksztalt;
+
+    switch (ksztalt) {
+    case 'k': {
+        double bok;
+        std::cout << "Podaj dlugosc boku kwadratu: ";
+        std::cin >> bok;
+        std::cout << "Pole powierzchni kwadratu: " << obliczPoleK(bok) << std::endl;
+        break;
+    }
+    case 'p': {
+        double bokA, bokB;
+        std::cout << "Podaj dlugosci bokow prostokata (oddzielone spacja): ";
+        std::cin >> bokA >> bokB;
+        std::cout << "Pole powierzchni prostokata: " << obliczPoleP(bokA, bokB) << std::endl;
+        break;
+    }
+    case 'o': {
+        double promien;
+        std::cout << "Podaj promien kola: ";
+        std::cin >> promien;
+        std::cout << "Pole powierzchni kola: " << obliczPoleO(promien) << std::endl;
+        break;
+    }
+    case 't': {
+        double podstawa, wysokosc;
+        std::cout << "Podaj dlugosc podstawy i wysokosc trojkata (oddzielone spacja): ";
+        std::cin >> podstawa >> wysokosc;
+        std::cout << "Pole powierzchni trojkata: " << obliczPoleT(podstawa, wysokosc) << std::endl;
+        break;
+    }
+
+            return 0;
+    }
+}
