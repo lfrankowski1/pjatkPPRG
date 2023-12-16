@@ -1,0 +1,49 @@
+#include <iostream>
+
+void pomnozMacierze(int A[][3], int B[][2], int wynik[][2], int wierszeA, int kolumnyA, int wierszeB, int kolumnyB) {
+
+    if (kolumnyA != wierszeB) {
+        std::cerr << "Nieprawidłowe wymiary macierzy. Mnożenie niemożliwe." << std::endl;
+        return;
+    }
+
+
+    for (int i = 0; i < wierszeA; ++i) {
+        for (int j = 0; j < kolumnyB; ++j) {
+            wynik[i][j] = 0;
+            for (int k = 0; k < kolumnyA; ++k) {
+                wynik[i][j] += A[i][k] * B[k][j];
+            }
+        }
+    }
+}
+
+int main() {
+
+    int macierzA[2][3] = {
+        {1, 2, 3},
+        {4, 5, 6}
+    };
+
+    int macierzB[3][2] = {
+        {7, 8},
+        {9, 10},
+        {11, 12}
+    };
+
+
+    int wynikMnozenia[2][2];
+
+  
+    pomnozMacierze(macierzA, macierzB, wynikMnozenia, 2, 3, 3, 2);
+
+ 
+    for (int i = 0; i < 2; ++i) {
+        for (int j = 0; j < 2; ++j) {
+            std::cout << wynikMnozenia[i][j] << " ";
+        }
+        std::cout << std::endl;
+    }
+
+    return 0;
+}
