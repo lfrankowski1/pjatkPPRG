@@ -1,0 +1,43 @@
+#include <iostream>
+
+int suma_dzielnikow(int number) {
+    int suma = 1;
+
+    for (int i = 2; i <= number / 2; ++i) {
+        if (number % i == 0) {
+            suma += i;
+        }
+    }
+
+    return suma;
+}
+
+bool czy_zaprzyjaznione(int liczba1, int liczba2) {
+    return (suma_dzielnikow(liczba1) == liczba2) && (suma_dzielnikow(liczba2) == liczba1);
+}
+
+void wypisz_zaprzyjaznione(int start, int end) {
+    std::cout << "Liczby zaprzyjaźnione w zakresie od " << start << " do " << end << ":\n";
+
+    for (int i = start; i <= end; ++i) {
+        for (int j = i + 1; j <= end; ++j) {
+            if (czy_zaprzyjaznione(i, j)) {
+                std::cout << "(" << i << ", " << j << ")\n";
+            }
+        }
+    }
+}
+
+int main() {
+    int start, end;
+
+    std::cout << "Podaj początek zakresu: ";
+    std::cin >> start;
+
+    std::cout << "Podaj koniec zakresu: ";
+    std::cin >> end;
+
+    wypisz_zaprzyjaznione(start, end);
+
+    return 0;
+}
