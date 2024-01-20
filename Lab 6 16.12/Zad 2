@@ -1,1 +1,115 @@
+#include <iostream>
+#include <vector>
+#include <algorithm>
 
+
+struct Osoba {
+    std::string imie;
+    std::string nazwisko;
+    int wiek;
+};
+
+
+void sortujOsoby(std::vector<Osoba>& tablicaOsob) {
+    std::sort(tablicaOsob.begin(), tablicaOsob.end(), [](const Osoba& a, const Osoba& b) {
+        if (a.nazwisko != b.nazwisko) {
+            return a.nazwisko < b.nazwisko;
+        }
+        if (a.imie != b.imie) {
+            return a.imie < b.imie;
+        }
+        return a.wiek < b.wiek;
+        });
+}
+
+void wyswietlOsoby(const std::vector<Osoba>& tablicaOsob, int indeksA = -1, int indeksB = -1) {
+    if (indeksA > indeksB) {
+        std::swap(indeksA, indeksB);
+    }
+
+    if (indeksA == -1 && indeksB == -1) {
+        std::cout << "Wszyscy:\n";
+        for (const auto& osoba : tablicaOsob) {
+            std::cout << osoba.imie << " " << osoba.nazwisko << ", Wiek: " << osoba.wiek << " lat\n";
+        }
+    }
+    else {
+        std::cout << "Wybrani:\n";
+        for (int i = indeksA; i <= indeksB && i < tablicaOsob.size(); ++i) {
+            const auto& osoba = tablicaOsob[i];
+            std::cout << osoba.imie << " " << osoba.nazwisko << ", Wiek: " << osoba.wiek << " lat\n";
+        }
+    }
+}
+
+void wyswietlOsobyNieStarsze(const std::vector<Osoba>& tablicaOsob, int maksymalnyWiek) {
+    std::cout << "Osoby nie starsze niż " << maksymalnyWiek << " lat:\n";
+    for (const auto& osoba : tablicaOsob) {
+        if (osoba.wiek <= maksymalnyWiek) {
+            std::cout << osoba.imie << " " << osoba.nazwisko << ", Wiek: " << osoba.wiek << " lat\n";
+        }
+    }
+}
+
+std::vector<Osoba> utworzTabliceOsob() {
+    std::vector<Osoba> tablicaOsob;
+
+    int liczbaOsob;
+    std::cout << "Podaj liczbe osob: ";
+    std::cin >> liczbaOsob;
+
+    for (int i = 0; i < liczbaOsob; ++i) {
+        Osoba osoba;
+        std::cout << "Osoba " << i + 1 << ":\n";
+        std::cout << "Imie: ";
+        std::cin >> osoba.imie;
+        std::cout << "Nazwisko: ";
+        std::cin >> osoba.nazwisko;
+        std::cout << "Wiek: ";
+        std::cin >> osoba.wiek;
+        tablicaOsob.push_back(osoba);
+    }
+
+    return tablicaOsob;
+}
+
+int main() {
+    std::vector<Osoba> tablicaOsob;
+
+    while (true) {
+        std::cout << "\nMenu Główne:\n";
+        std::cout << "1. Utwórz nową tablicę osób\n";
+        std::cout << "2. Wyświetl wszystkie lub wybrane osoby\n";
+        std::cout << "3. Wyświetl osoby nie starsze niż zadany wiek\n";
+        std::cout << "4. Zakończ program\n";
+        std::cout << "Wybierz opcję: ";
+
+        int opcja;
+        std::cin >> opcja;
+
+        switch (opcja) {
+        case 1:
+            tablicaOsob = utworzTabliceOsob();
+            sortujOsoby(tablicaOsob);
+            break;
+        case 2:
+            std::cout << "Podaj indeks A: ";
+            int indeksA;
+            std::cin >> indeksA;
+            std::cout << "Podaj indeks B: ";
+            int indeksB;
+            std::cin >> indeksB;
+            wyswietlOsoby(tablicaOsob, indeksA, indeksB);
+            break;
+        case 3:
+            std::cout << "Podaj maksymalny wiek: ";
+            int maksymalnyWiek;
+            std::cin >> maksymalnyWiek;
+            wyswietlOsobyNieStarsze(tablicaOsob, maksymalnyWiek);
+            break;
+        case 4:
+            return 0;
+        default:
+            std::cout << "Nieprawidłowa opcja. Spróbuj ponownie.\n";
+            break;
+        }
